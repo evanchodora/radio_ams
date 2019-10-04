@@ -39,7 +39,8 @@ def main():
                          ); """
 
     message_table = """ CREATE TABLE IF NOT EXISTS messages (
-                            recipient TEXT PRIMARY KEY,
+                            recipient TEXT,
+                            m_id TEXT,
                             sender TEXT,
                             date TEXT,
                             subject TEXT,

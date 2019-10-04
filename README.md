@@ -1,5 +1,5 @@
 # AX.25 Messaging System (AMS)
-### Created by Evan Chodora (AF5E)
+#### Created by AF5E
 
 [https://github.com/evanchodora/radio_ams](http://github.com/evanchodora/radio_ams)
 
@@ -20,5 +20,5 @@ This getting started section
 ## Clients
 
 ## Contact
-Evan Chodora - AF5E - github.com/evanchodora
+Evan Chodora - AF5E - [github.com/evanchodora](https://github.com/evanchodora)
 
