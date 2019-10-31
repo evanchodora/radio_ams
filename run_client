@@ -1,0 +1,7 @@
+#!/bin/bash
+
+callsign=AF5E
+server=127.0.0.1
+port=4444
+
+cat <(echo $callsign) - | ./busybox nc $server $port

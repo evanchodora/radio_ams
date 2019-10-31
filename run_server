@@ -1,0 +1,6 @@
+#!/bin/bash
+
+port=4444
+server_program=./server.sh
+
+./busybox nc -vlk -p $port -e $server_program

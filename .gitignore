@@ -1,3 +1,6 @@
+# Busybox binary
+busybox
+
 # Message database files
 *.db
 
