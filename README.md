@@ -10,7 +10,7 @@ Offers a convenient way to provide a messaging system for mobile operations and 
 
 ## Getting Started
 
-This getting started section 
+This getting started section goes over some of the prerequisites and install directions for the server and client software.
 
 ### Disclaimer
 
@@ -19,14 +19,14 @@ Any messages sent or received using this software should be considered public an
 
 ### Prerequisites
 
-- Linux system setup with AX.25
-- Connection to a hardware/virtual TNC and radio linked to
-- netcat (nc) compiled with the `-e` option (if your system does not support the `-e` option I recommend the [https://busybox.net/](busybox) compiled binary that contains `nc` and is how the server is written to run with)
+- Linux system setup with AX.25 ([here](https://www.tldp.org/HOWTO/AX25-HOWTO/index.html) and [here](https://xastir.org/index.php/HowTo:AX.25_-_Ubuntu/Debian) are some good resources for getting setup)
+- Connection to a hardware/virtual TNC and radio linked to computer ([Direwolf](https://github.com/wb2osz/direwolf) is an awesome modem that only relies on your soundcard)
+- netcat (nc) compiled with the `-e` option (if your system does not support the `-e` option I recommend the [busybox](https://busybox.net/) compiled binary that contains `nc` and is how the server is written to run with)
 - Python 3 and pip3 to install requirements
 
 ### Installing
 
-Installation is simple: just clone the repository into your server station and then copy `run_client` onto any clients that you want to use to connect.
+Installation is simple: just clone the repository onto your server station and then copy `run_client` onto any clients that you want to use to connect.
 
 ```
 git clone https://github.com/evanchodora/radio_ams.git
@@ -34,15 +34,15 @@ cd radio_ams
 pip3 install -r requirements.txt
 ```
 
-I recommend to download the busybox compiled binary for your architecture.
-Check the [https://busybox.net/downloads/binaries/](latest directory) and find the url for your architecture (i.e. x86_64, armv7l, armv8l, etc).
+I recommend downloading the busybox compiled binary for your architecture.
+Check the [latest directory](https://busybox.net/downloads/binaries/) and find the url for your architecture (i.e. x86_64, armv7l, armv8l, etc).
 
 ```
 curl $busybox_binary_url -o busybox
 chmod +x busybox
 ```
 
-## AX.25
+### AX.25
 
 Install AX.25 tools and apps if you haven't already:
 ```
@@ -64,23 +64,19 @@ sudo kissattach device ax0 ip_addr
 ```
 Where `device` is your device location (i.e. `/dev/ttyUSB0`) and `ip_addr` is address you'd like to assign to the interface.
 
-## Server
-
-### Setting up the Database
+## Server and Database
 
 The first step is to create the message database in the desired server directory:
 ```
 python3 create_db.py
 ```
 
-Edit the `run_server` script to the desired port (default is 4444).
-
-Run the server with `./run_server` to start the server and listen for incoming connections.
+Run the server with `./run_server $server_port` to start the server and listen for incoming connections with the specified server port.
 
 ## Clients
 
 After setting up the radio interface on the clients, a user can edit the `run_client` script with their callsign, server ip, and port.
-The client can then connect by running `./run_client` and interact with the AMS through the CLI in their terminal once the connection is made.
+The client can then connect by running `./run_client $local_callsign $server_ip $port` and interact with the AMS through the CLI in their terminal once the connection is made.
 
 After exiting the AMS software, `CTRL+D` can be used to end the connection.
 
