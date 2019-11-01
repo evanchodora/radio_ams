@@ -1,7 +1,51 @@
 #!/bin/bash
+#
+# Bash script to serve as a wrapper for netcat (nc) and allow connections 
+# to a server running the AMS software and listening for connections with nc
+#
+# Usage:
+#   ./run_client local_callsign server_ip port
+#
+# Evan Chodora (AF5E), 2019
+# https://github.com/evanchodora/radio_ams
 
-callsign=AF5E
-server=127.0.0.1
-port=4444
+# Check to ensure busybox is available
+if ! [ -x "$(command -v nc)" ]; then
+        echo 'Error: netcat (nc) is missing'
+        exit 1
+fi
 
-cat <(echo $callsign) - | ./busybox nc $server $port
+# Script usage help line
+usage() { 
+echo "Wrapper for netcat that connects to remote servers"
+echo "Usage: $0 local_callsign server_ip port [-h | --help]"
+echo "See README.md for more information." 1>&2; }
+
+# Check for proper flags for help
+while getopts ":h" o; do
+	case "${o}" in
+		h)
+			usage
+			exit 0
+			;;
+		*)
+			usage
+			exit 1
+			;;
+	esac
+done
+shift $((OPTIND-1))
+
+# Check if three arguments were passed to the script
+if [ $# -lt 3 ]; then
+        echo "Missing required server and callsign parameters"
+        echo "$0 --help for more information"
+        exit 1
+fi
+
+# Store variables
+callsign=$1
+server_ip=$2
+port=$3
+
+cat <(echo $callsign) - | nc $server_ip $port
