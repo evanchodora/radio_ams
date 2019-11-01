@@ -1,5 +1,7 @@
 # AX.25 Messaging System (AMS)
 
+![Main Menu Screenshot](img/main_menu.png)
+
 #### Created by AF5E
 
 [https://github.com/evanchodora/radio_ams](http://github.com/evanchodora/radio_ams)
