@@ -82,6 +82,10 @@ The client can then connect by running `./run_client $local_callsign $server_ip 
 
 After exiting the AMS software, `CTRL+D` can be used to end the connection.
 
+## Demo
+
+[![AMS Demo](https://asciinema.org/a/278429.svg)](https://asciinema.org/a/278429?autoplay=1)
+
 ## Contact
 
 Evan Chodora - AF5E - [github.com/evanchodora](https://github.com/evanchodora)
